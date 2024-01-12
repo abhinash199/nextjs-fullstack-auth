@@ -11,7 +11,7 @@ export async function POST(request: NextRequest){
 
         const reqBody = await request.json()
         const {email, password} = reqBody;
-        console.log(reqBody);
+        console.log(reqBody,"req");
 
         //check if user exists
         const user = await User.findOne({email})
@@ -35,7 +35,7 @@ export async function POST(request: NextRequest){
             email: user.email
         }
         //create token
-        const token = await jwt.sign(tokenData, process.env.TOKEN_SECRET!, {expiresIn: "1d"})
+        const token = await jwt.sign(tokenData, "4FC83CDBE2D6D21EE7B21B828A6EB985BC1085D9B8C67BA1FD1119AF5A5C2F74", {expiresIn: "1d"})
 
         const response = NextResponse.json({
             message: "Login successful",
